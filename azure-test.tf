@@ -125,12 +125,13 @@ resource "azurerm_virtual_machine" "test" {
   
    provisioner "file" {
     source      = "tomcat-users.xml"
-    destination = "/opt/tomcat/apache-tomcat-8.5.15/conf/tomcat-users.xml"
+    destination = "/home/akilan/tomcat-users.xml"
   }
   
   provisioner "remote-exec" {
     inline = [<<EOF
-    
+    		
+    		sudo mv /home/akilan/tomcat-users.xml /opt/tomcat/apache-tomcat-8.5.15/conf/
 		sudo /opt/tomcat/apache-tomcat-8.5.15/bin/startup.sh
 
     EOF
